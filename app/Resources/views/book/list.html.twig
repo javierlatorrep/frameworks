@@ -11,6 +11,7 @@
                 <th>Publication date</th>
                 <th>Edition</th>
                 <th>Price (€)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@
                     <td>{{ book.publicationDate|date('Y-m-d') }}</td>
                     <td>{{ book.edition }}</td>
                     <td>{{ book.price }}</td>
+                    <td>
+                        <a href="{{ path('delete_book', {'id': book.id}) }}">
+                            <span class="glyphicon glyphicon-trash" />
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

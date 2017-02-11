@@ -21,29 +21,35 @@ class Book
     private $id;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $writer;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
      */
     private $publicationDate;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(
+     *     type="string",
+     *     nullable=true
+     * )
+     * 
      */
     private $edition;
     
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $price;
 
