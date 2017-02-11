@@ -1,5 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Book store</h1>
 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Writer</th>
+                <th>Publication date</th>
+                <th>Edition</th>
+                <th>Price (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.writer }}</td>
+                    <td>{{ book.publicationDate|date('Y-m-d') }}</td>
+                    <td>{{ book.edition }}</td>
+                    <td>{{ book.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
