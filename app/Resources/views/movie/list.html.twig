@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Book store</h1>
+    <h1>Movie store</h1>
 
+    <div class="js-new-movie">
+        {{ include('movie/_form.html.twig') }}
+    </div>
+    
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Writer</th>
+                <th>Director</th>
                 <th>Publication date</th>
                 <th>Edition</th>
                 <th>Price (€)</th>
@@ -15,15 +19,15 @@
             </tr>
         </thead>
         <tbody>
-            {% for book in books %}
+            {% for movie in movies %}
                 <tr>
-                    <td>{{ book.title }}</td>
-                    <td>{{ book.writer }}</td>
-                    <td>{{ book.publicationDate|date('Y-m-d') }}</td>
-                    <td>{{ book.edition }}</td>
-                    <td>{{ book.price }}</td>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                    <td>{{ movie.publicationDate|date('Y-m-d') }}</td>
+                    <td>{{ movie.edition }}</td>
+                    <td>{{ movie.price }}</td>
                     <td>
-                        <a href="{{ path('delete_book', {'id': book.id}) }}">
+                        <a href="{{ path('delete_movie', {'id': movie.id}) }}">
                             <span class="glyphicon glyphicon-trash" />
                         </a>
                     </td>
@@ -31,8 +35,4 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <div class="js-new-book">
-        {{ include('book/_form.html.twig') }}
-    </div>
 {% endblock %}

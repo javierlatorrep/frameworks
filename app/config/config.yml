@@ -70,3 +70,25 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app: 
+            types:
+                movie:
+                    mappings:
+                        title: ~
+                        director: ~
+                        publicationDate: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: src\AppBundle\Entity\Movie
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~

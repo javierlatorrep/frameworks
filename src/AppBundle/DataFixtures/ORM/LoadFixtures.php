@@ -21,26 +21,26 @@ class LoadFixtures implements FixtureInterface
     
     public function title()
     {
-        $books = [
-            'The Barefoot Investor',
-            'Milk and Honey',
-            'Lion: A Long Way Home',
-            'When Breath Becomes Air',
-            'The Little Book of Hygge',
-            'Nineteen Eighty-Four',
-            'The Little Book of Mindfulness',
+        $movies = [
+            'Watchmen',
+            'Seven',
+            'The lion king',
+            'Up in the air',
+            'Braveheart',
+            'Goldeneye',
+            'Gladiator',
             'Aurelia',
-            'My Not So Perfect Life',
-            'Deliciously Ella with Friends',
-            'Paralithodes',
-            'Norse Mythology',
-            'Out of Bounds',
-            'The Bikini Body 28-Day Healthy Eating & Lifestyle Guide'
+            'Pompeya',
+            'Star Wars IV: A new hope',
+            'I robot',
+            'La La Land',
+            'Casino Royale',
+            'Quantum of solace'
         ];
         
-        $key = array_rand($books);
+        $key = array_rand($movies);
         
-        return $books[$key];
+        return $movies[$key];
     }
     
     public function edition()

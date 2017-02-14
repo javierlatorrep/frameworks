@@ -1,8 +1,8 @@
-AppBundle\Entity\Book:
-    book_{1..10}:
+AppBundle\Entity\Movie:
+    movie_{1..10}:
         title: <title()>
-        writer: <name()>
+        director: <name()>
         publicationDate: <dateTimeBetween('-10 years', 'now')>
         edition: <edition()>
-        price: <numberBetween(5, 80)>
+        price: <numberBetween(5, 30)>
 

@@ -4,14 +4,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Repository\BookRepository;
-
+use AppBundle\Repository\MovieRepository;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
- * @ORM\Table(name="book")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MovieRepository")
+ * @ORM\Table(name="movie")
  */
-class Book
+class Movie
 {
     /**
      * @ORM\Id
@@ -30,7 +29,7 @@ class Book
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    private $writer;
+    private $director;
 
     /**
      * @ORM\Column(type="date")
@@ -68,12 +67,12 @@ class Book
         $this->title = $title;
     }
 
-    public function getWriter() {
-        return $this->writer;
+    public function getDirector() {
+        return $this->director;
     }
 
-    public function setWriter($writer) {
-        $this->writer = $writer;
+    public function setDirector($director) {
+        $this->director = $director;
     }
 
     public function getPublicationDate() {

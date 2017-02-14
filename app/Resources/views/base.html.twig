@@ -2,17 +2,48 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Books{% block title %}{% endblock %}</title>
+        <title>Movies{% block title %}{% endblock %}</title>
         {% block stylesheets %}
             <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <header>
+            <nav class="navbar navbar-inverse bg-faded">
+                <form class="navbar-form navbar-right">
+                    <input
+                        id="js-search"
+                        class="form-control mr-sm-2"
+                        type="text"
+                        placeholder="Search"
+                    />
+                </form>
+            </nav>
+        </header>
+          
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function() {
+                    $searchInput = $("#js-search");
+                    
+                    $searchInput.on('keyup', function(e) {
+                        var text = $(this).val();
+                        
+                        var url = "{{ path("search", {"text": }) }}";
+                        
+                        $.ajax({
+                            url: url,
+                            type: "GET"
+                        }).done(function(res) {
+                            console.log(res);
+                        });
+                    }).focus();
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
