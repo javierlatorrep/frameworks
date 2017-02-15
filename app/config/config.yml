@@ -81,12 +81,8 @@ fos_elastica:
                     mappings:
                         title: ~
                     persistence:
-                        # the driver can be orm, mongodb, phpcr or propel
-                        # listener and finder are not supported by
-                        # propel and should be removed
                         driver: orm
                         model: src\AppBundle\Entity\Movie
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~

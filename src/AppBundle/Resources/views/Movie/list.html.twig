@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Movie store</h1>
+
+    <div class="js-new-movie">
+        {{ include('movie/_form.html.twig') }}
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Publication date</th>
+                <th>Edition</th>
+                <th>Price (€)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                    <td>{{ movie.publicationDate|date('Y-m-d') }}</td>
+                    <td>{{ movie.edition }}</td>
+                    <td>{{ movie.price }}</td>
+                    <td>
+                        <a href="{{ path('delete_movie', {'id': movie.id}) }}">
+                            <span class="glyphicon glyphicon-trash" />
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
