@@ -21,25 +21,29 @@
                 </form>
             </nav>
         </header>
-          
+
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
             <script>
                 $(document).ready(function() {
                     $searchInput = $("#js-search");
-                    
+
                     $searchInput.on('keyup', function(e) {
                         var text = $(this).val();
-                        
-                        var url = "{{ path("search", {"text": }) }}";
-                        
+
                         $.ajax({
-                            url: url,
+                            url: Routing.generate("search", {"text": text}),
                             type: "GET"
                         }).done(function(res) {
                             console.log(res);
+                        }).fail(function(err) {
+                            console.log(err);
                         });
                     }).focus();
                 });

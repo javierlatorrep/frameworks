@@ -75,13 +75,11 @@ fos_elastica:
     clients:
         default: { host: localhost, port: 9200 }
     indexes:
-        app: 
+        app:
             types:
                 movie:
                     mappings:
                         title: ~
-                        director: ~
-                        publicationDate: ~
                     persistence:
                         # the driver can be orm, mongodb, phpcr or propel
                         # listener and finder are not supported by

@@ -6,9 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Form\Type\MovieType;
-use AppBundle\Entity\Movie;
 
 class MovieController extends Controller
 {
@@ -20,10 +19,14 @@ class MovieController extends Controller
     }
     
     /**
-     * @Route("/search/{text}", name="search")
+     * @Route("/search/{text}", name="search", options={"expose" = true})
      */
     public function searchAction($text) {
-        return new JsonResponse(array("text" => $text));
+        $finder = $this->container->get('fos_elastica.finder.app.movie');
+        
+        $results = $finder->find($text);
+        
+        return new JsonResponse($results);
     }
     
     /**
@@ -33,7 +36,7 @@ class MovieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(movieType::class);
+        $form = $this->createForm(MovieType::class);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
