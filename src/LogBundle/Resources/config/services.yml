@@ -1,0 +1,12 @@
+services:
+    log.movie_saver:
+        class: LogBundle\Services\MovieSaver
+    log.movielogger:
+        class: LogBundle\Services\MovieLogger
+    log.listener:
+        class: LogBundle\EventListener\MovieLoggerEventListener
+        arguments:
+            - '@log.movielogger'
+        tags: 
+            - {name: kernel.event_listener, event: movie_created, method: log}
+        

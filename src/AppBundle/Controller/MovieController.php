@@ -8,13 +8,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Form\Type\MovieType;
+use AppBundle\Entity\Movie;
+use AppBundle\Event\MovieCreatedEvent;
 
 class MovieController extends Controller
 {
     /**
      * @Route("/hello", name="hello")
      */
-    public function hellloAction() {
+    public function helloAction() {
         return new Response("Hola Mundo!");
     }
     
@@ -45,6 +47,10 @@ class MovieController extends Controller
             $em->persist($movie);
             $em->flush();
 
+            $dispatcher = $this->get('event_dispatcher');
+            $movieCreatedEvent = new MovieCreatedEvent($movie);
+            $dispatcher->dispatch(MovieCreatedEvent::NAME, $movieCreatedEvent);
+            
             $this->addFlash('notice', 'movie added!');
 
             return $this->redirectToRoute('home');
@@ -62,7 +68,7 @@ class MovieController extends Controller
     /**
      * @Route("/delete/{id}", name="delete_movie")
      */
-    public function deleteAction(movie $movie)
+    public function deleteAction(Movie $movie)
     {
         $em = $this->getDoctrine()->getManager();
         
