@@ -10,15 +10,13 @@ class MovieLogger
     {
         $myFile = __DIR__."/file.txt";
         
-        echo $myFile;
-        
         if (file_exists($myFile)) {
             $mode = "a";
         } else {
             $mode = "w";
         }
         
-        $fh = fopen($myFile, 'w');
+        $fh = fopen($myFile, $mode);
         fwrite($fh, $movie->getTitle()."\n");
         
         fclose($fh);
